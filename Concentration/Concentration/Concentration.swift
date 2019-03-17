@@ -32,10 +32,14 @@ class Concentration {
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
+        
+        for index in 0..<cards.count {
+            cards[index].isFaceUp = true
+        }
     }
     
     init(numberOfPairsOfCards: Int) {
-        for _ in 0...numberOfPairsOfCards {
+        for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
@@ -46,10 +50,9 @@ class Concentration {
     func shuffleCards() {
         for cardIndex in cards.indices {
             let randomIndex = Int(arc4random_uniform(UInt32(cards.count)))
-            let randomCard = cards[randomIndex]
             
             let tempCard = cards[cardIndex]
-            cards[cardIndex] = randomCard
+            cards[cardIndex] = cards[randomIndex]
             cards[randomIndex] = tempCard
         }
     }
